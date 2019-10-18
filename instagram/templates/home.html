@@ -1,20 +1,31 @@
-{% extends 'registration/base.html' %}
+{% extends 'base.html' %}
+
 
 
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
             {% for image in all_images %}
+        <div class="col-md-10">
+            
             <div class="card">
-                <a href="{% url 'showprofile' id=image.profile.id %}">
-                    <img src="{{image.profile_details.profile_pic.cdn_url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
-                        {{image.profile.username}}</a>
+               
+                   
+                       <a> {{image.profile.username}}</a>
                 <hr>
                 
-    </div>
-</div>
+   
+
+
+<hr>
+                <div class="card-img-top">
+                    <img style="height:300px;width:348px;" src="{{image.pic.url}}"
+                    alt="" class="card-img-top" ></div>
+                
+                </div>
+            </div>
 {% endfor %}
- </div>
+
 </div>
+  </div>
 {% endblock %}
