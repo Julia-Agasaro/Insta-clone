@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg" id="navMain">
+    <div class="container">
+        <a class="" href="/"><i class="fa fa-instagram"style="font-size:30px;color:black" ></i></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+       
+
+            <ul class="navbar-nav ml-auto" style="list-style: none">
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                   
+                </li>
+
+            </ul>
+
+            <ul  class="navbar-nav ml-auto" style="list-style: none">
+                   <li>
+                       <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <a href="/logout"style="font-family: 'Kodchasan', sans-serif; color: black">Logout</a>
+                   </li>
+            </ul>
+                                {%endif%}
+
+        </div>
+    </div>
+</nav>
