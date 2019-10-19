@@ -13,15 +13,40 @@
                    
                 </li>
 
-            </ul>
+            
 
-            <ul  class="navbar-nav ml-auto" style="list-style: none">
-                   <li>
-                       <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    <a href="/logout"style="font-family: 'Kodchasan', sans-serif; color: black">Logout</a>
-                   </li>
-            </ul>
-                                {%endif%}
+                               
+                                
+          <ul class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"
+                   id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" style="font-family: 'Kodchasan', sans-serif; color: black"
+                  aria-expanded="false">
+                  {{user.username | upper}}
+                  <span class="caret"></span>
+              </a>
+        <ul class="dropdown-menu" role="menu">
+          
+          <li>
+            <a href="/logout"  style="font-family: 'Kodchasan', sans-serif; color: black">Logout</a>
+          </li>
+          <li>
+                <a href="{% url 'profile' user.id%}"style="font-family: 'Kodchasan', sans-serif; color: black">Profile</a>
+              </li>
+        </ul>
+  
+      
+    
+    {% else %}
+    <li>
+      <a  href="/accounts/login">Login</a>
+    </li>
+
+    {% endif %}
+</ul>
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
 
         </div>
     </div>

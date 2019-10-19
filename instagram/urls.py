@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
    url(r'^$',views.home,name='home'),
+   url(r'^profile/profile/(\d+)',views.profile,name = 'profile'),
+    
 ]
 
 
