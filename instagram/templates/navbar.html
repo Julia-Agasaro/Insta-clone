@@ -26,13 +26,17 @@
                   <span class="caret"></span>
               </a>
         <ul class="dropdown-menu" role="menu">
-          
-          <li>
+            <li>
+              <a href="{% url 'profile' user.id%}"style="font-family: 'Kodchasan', sans-serif; color: black">Profile</a>
+            </li>
+            <li>
+              <a href="{% url 'upload_image' %}"  style="font-family: 'Kodchasan', sans-serif; color: black">Add a Post</a>
+            </li>
+            <li>
             <a href="/logout"  style="font-family: 'Kodchasan', sans-serif; color: black">Logout</a>
-          </li>
-          <li>
-                <a href="{% url 'profile' user.id%}"style="font-family: 'Kodchasan', sans-serif; color: black">Profile</a>
-              </li>
+            </li>
+            
+         
         </ul>
   
       

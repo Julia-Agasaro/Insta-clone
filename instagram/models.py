@@ -20,12 +20,12 @@ class Profile(models.Model):
 
     @classmethod
     def get_by_id(cls, id):
-        profile = Profile.objects.get(owner=id)
+        profile = Profile.objects.get(user=id)
         return profile
 
     @classmethod
-    def get_profile_by_username(cls, owner):
-        profiles = cls.objects.filter(owner__contains=owner)
+    def get_profile_by_username(cls, user):
+        profiles = cls.objects.filter(user__contains=user)
         return profiles
 class Image(models.Model):
     pic= models.ImageField(upload_to = 'media/')
@@ -48,3 +48,29 @@ class Image(models.Model):
     def get_profile_images(cls, profile):
         images = Image.objects.filter(profile__pk=profile)
         return images
+
+
+class Comment(models.Model):
+    image = models.ForeignKey(Image,blank=True, on_delete=models.CASCADE,related_name='comment')
+    comment_owner = models.ForeignKey(User, blank=True)
+    comment= models.TextField()
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    @classmethod
+    def get_image_comments(cls, id):
+        comments = Comment.objects.filter(image__pk=id)
+        return comments
+
+    def __str__(self):
+        return str(self.comment)
+
+
+
+class Likes(models.Model):
+    liker=models.ForeignKey(User)
+    image =models.ForeignKey(Image)

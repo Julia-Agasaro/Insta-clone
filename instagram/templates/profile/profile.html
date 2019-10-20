@@ -7,17 +7,20 @@
 {{ form.media }}
 <div class="container">
     <div class="row">
+            {% for Profile in profile %}
         <div class="col-md-12">
             <div class="row">
+                 
                 <div style="overflow:hidden; -webkit-border-radius:50px; -moz-border-radius:50px; border-radius:50px; width:90px;height:90px;">
                     {% if profile_details.profile_pic %}
                     
-                    <img src="{{profile_details.profile_pic.url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
-                    
+                    <img src="{{Profile.profile_details.profile_pic.url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
+                    <h2><strong>{{Profile.profile.username}}</strong></h2>
+
                     {% else %}
                         <img class="img-rounded" src=" {% static 'img/avi.jpeg' %}">
                     {% endif %}
-               
+                    {%endfor%}
                 <div class="col-md-5 text-center">
                     <ul class="list-inline">
                         <li class="list-inline-item">

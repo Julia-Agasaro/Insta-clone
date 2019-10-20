@@ -10,6 +10,8 @@ def home(request):
     current_user = request.user
     all_images = Image.objects.all()
     profile = Profile.objects.all()
+    comments = Comment.objects.all()
+	likes = Likes.objects.all()
     return render(request,'home.html',locals())
 
     
@@ -26,6 +28,53 @@ def profile(request,prof_id):
 	
 	
 
-	return render(request,'profile/profile.html',{"images":images,"profile":profile,"title":title})
-	
+	return render(request,'profile/profile.html',locals())
 
+
+@login_required(login_url='accnts/login/')
+def add_image(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            add=form.save(commit=False)
+            add.profile = current_user
+            add.save()
+            return redirect('home')
+    else:
+        form = ImageForm()
+
+
+    return render(request,'upload.html',locals())
+
+def like(request, image_id):
+    current_user = request.user
+    image=Image.objects.get(id=image_id)
+    new_like,created= Likes.objects.get_or_create(liker=current_user, image=image)
+    new_like.save()
+
+    return redirect('home')
+
+def comment(request,image_id):
+    current_user=request.user
+    image = Image.objects.get(id=image_id)
+    profile_owner = User.objects.get(username=current_user)
+    comments = Comment.objects.all()
+    print(comments)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.comment_owner = current_user
+            comment.save()
+
+            print(comments)
+
+
+        return redirect(home)
+
+    else:
+        form = CommentForm()
+
+    return render(request, 'comment.html', locals())
