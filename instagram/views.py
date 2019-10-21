@@ -1,9 +1,10 @@
 from django.http import Http404
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Image, Profile
-from .forms import ProfileForm,ImageForm
+from .models import Image, Profile,Comment,Likes
+from .forms import ProfileForm,ImageForm,CommentForm,ProfileEditForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -11,7 +12,7 @@ def home(request):
     all_images = Image.objects.all()
     profile = Profile.objects.all()
     comments = Comment.objects.all()
-	likes = Likes.objects.all()
+    likes = Likes.objects.all()
     return render(request,'home.html',locals())
 
     
@@ -29,9 +30,31 @@ def profile(request,prof_id):
 	
 
 	return render(request,'profile/profile.html',locals())
+@login_required(login_url='accounts/login/')
+def edit(request):
+     current_user = request.user
+
+     if request.method == 'POST':
+        if Profile.objects.filter(user_id= current_user):
+
+            profile_form = ProfileEditForm(request.POST,request.FILES,instance = Profile.objects.get(user_id=current_user))
+        else:
+            profile_form = ProfileEditForm(request.POST,request.FILES)
+
+        if profile_form.is_valid():
+            userProfile=profile_form.save(commit = False)
+            userProfile.user = current_user
+            userProfile.save()
+            
+       
+           
+     else:
+
+        profile_form = ProfileEditForm()
+        return render(request, 'profile/profileForm.html', locals())
 
 
-@login_required(login_url='accnts/login/')
+@login_required(login_url='accounts/login/')
 def add_image(request):
     current_user = request.user
     if request.method == 'POST':
@@ -78,3 +101,15 @@ def comment(request,image_id):
         form = CommentForm()
 
     return render(request, 'comment.html', locals())
+
+
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if request.POST.get['search']:
+        search_term = request.GET.get("search")
+        profiles = Profile.objects.filter(user__username__icontains = search_term)
+        message = f"{search_term}"
+        return render(request,'search.html',{"message":message,"profiles":profiles})
+    else:
+        message = "You haven't searched for any item"
+        return render(request,'search.html',{"message":message})   
