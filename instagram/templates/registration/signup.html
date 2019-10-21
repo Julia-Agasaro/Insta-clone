@@ -1,0 +1,37 @@
+{%extends 'registration/base.html'%}
+{%load bootstrap4 %}
+{%block content%}
+
+<div class="container col d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 ">
+            
+<div class="card  " style="width: 18rem;">
+    <div class="card-header">
+   <center> <h1>Instagram</h1>
+    <p>Sign up to see photos and videos from your friends.</p>
+
+ </center>
+
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %} {% for field in form %}
+            <p>
+                {{ field.label_tag }}
+                <br> {{ field }} 
+                 {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+                   {% endfor %}
+            </p>
+            {% endfor %}
+            Have an account already?<a href="/accounts/login">Login</a>
+            <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Sign up</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
