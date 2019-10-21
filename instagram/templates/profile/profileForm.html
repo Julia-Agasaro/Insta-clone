@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{% block title %}Edit your account{% endblock %}
+
+{% block content %}
+<div class="div1" style="margin-top:50px;margin-left:250px;width:700px;
+height: 500px;
+border: 1px solid rgb(218, 225, 230); text-align:center; ">
+    <h1 style="font-style:italic;color:black;">Edit Profile</h1>
+    <p>You can edit your account using the following form:</p>
+    <form action="." method="post" enctype="multipart/form-data">
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Save changes" ></p>
+    </form>
+    </div>
+{% endblock %}
