@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% load bootstrap4%}
 
 {% block content %}
 <div class="container">
@@ -8,9 +8,9 @@
             {% for image in all_images %}
         <div class="col-md-10">
             
-            <div class="card">
-                   <a> <img src="{{image.profile_details.profile_pic.url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
-                    {{image.profile.username}}</a>
+            <div class="card"><br><br><br><br>
+                   <a> <img src="{{image.profile_details.profile_pic.url}}" class="img-responsive img-circle" style="width:10%; height:auto" alt=""/>
+                    </a>{{image.profile.username}}
                    
                        
             
@@ -40,7 +40,8 @@
                             </li>
                         </ul>
                         <br>
-                    <p>{{image.likes.count}}</p>{{likes|length}} likes <p class=""> {{image.comment.count}} comments </p>
+                    <p>{{image.likes.count}} {{likes|length}} likes </p>
+                    <p class=""> {{image.comment.count}} comments </p>
                     
 
                 <div class="card-body ">
