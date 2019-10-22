@@ -153,9 +153,9 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" style="width:135px">
       </div>
       <ul class="nav nav-right">
-        <form class="form-group" action="{%url 'searches'%}" method="post" style="padding: 8px; text-align: center;border-radius: 8px;border: 2px solid #ddd;outline: 0;margin-right:400px; display:inline" role="search">
+        <form class="form-group" action="{%url 'search'%}" style="padding: 8px; text-align: center;border-radius: 8px;border: 2px solid #ddd;outline: 0;margin-right:400px; display:inline" role="search">
           {% csrf_token %}
-          <input type="text" name="images" placeholder="Search" style="border:none; padding:10px; background-color:inherit">
+          <input type="text" name="user" placeholder="Search" style="border:none; padding:10px; background-color:inherit">
         </form>
         {% if user.is_authenticated %}
 
