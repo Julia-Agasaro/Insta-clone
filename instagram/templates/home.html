@@ -12,7 +12,8 @@
                 <div class="card"><br><br><br>
 
                     <a> <img src="{{profile.profile_pic.url}}" class="img-responsive img-circle" style="width:10%; height:auto" alt=""/>
-                    </a>{{image.profile.username}}
+                    </a>
+                    <a href="{% url 'profile' profile.id %} " style="color: black">{{image.profile.username}}</a>
 
                                                     <hr>
                         <div class="card-img-top">

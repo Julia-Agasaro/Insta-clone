@@ -13,9 +13,9 @@
           <div class="col-sm-8" style=" padding:30px; border-bottom: 1px solid #ddd">
 
 		      <div class="row" style="padding-bottom:20px">
-            {% for profile in profile%}
+           
 			<div class="col-md-4">
-				<img src="{{profile.profile_pic.url}}" alt="" style="height:200px;width:200px; border-radius:50%;" >
+				<img src="{{user.profile_pic.url}}" alt="" style="height:200px;width:200px; border-radius:50%;" >
               
             </div>
             <p style="font-weight:bold; font-size:35px">{{user.profile.bio}}</p>
@@ -44,14 +44,22 @@
             <div class="container">
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <i class="fa fa-heart-o" style="color: black" aria-hidden="true"></i></a>
+                    <a href=" {% url 'like' image_id=image.id %}">
+                    <i class="fa fa-heart-o fa-3x" style="color: black" aria-hidden="true"></i></a>
 
-                       
-                            <i class="fa fa-comment-o" aria-hidden="true" style="color:black;"></i></a>
+                    <a href=" {% url 'comment' image_id=image.id %}">
+                    <i class="fa fa-comment-o fa-3x" aria-hidden="true" style="color:black;"></i></a>
+                    <hr>
                     </li>
-                    <p></p>{{likes|length}} likes
+                    </ul>
+                    <li class="list-inline-item">
+                    <h5><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
 
-                </ul>
+                    </li>
+                    </ul>
+                    <br>
+                    <p>{{image.likes.count}} {{likes|length}} likes </p>
+                    <p class=""> {{image.comment.count}} comments </p>
                     <ul class="list-inline">
                     <li class="list-inline-item">
                         <h5><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
@@ -62,7 +70,7 @@
                 </div>
         </div>
         
-        {% endfor %}
+        
         {%endfor%} 
     </div>
 </div>

@@ -80,13 +80,14 @@ def add_image(request):
 
     return render(request,'upload.html',locals())
 
-def like(request, image_id):
-    current_user = request.user
-    image=Image.objects.get(id=image_id)
-    new_like,created= Likes.objects.get_or_create(liker=current_user, image=image)
-    new_like.save()
-
-    return redirect('home')
+@login_required(login_url='/accounts/login/')
+def like(request,image_id):
+   likes =1
+   image=Image.objects.get(id=image_id)
+   image.likes=likes+1
+   image.save()
+   
+   return redirect('home')
 
 def comment(request,image_id):
     current_user=request.user
