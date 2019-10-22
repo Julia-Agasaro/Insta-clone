@@ -24,16 +24,19 @@ class Profile(models.Model):
         return profile
 
     @classmethod
-    def get_profile_by_username(cls, user):
-        profiles = cls.objects.filter(user__contains=user)
-        return profiles
+    def search_username(cls,search_term):
+        user = cls.objects.filter(user__username__icontains = search_term)
+
+        return  user
+
+
+
 class Image(models.Model):
     pic= models.ImageField(upload_to = 'media/')
-    # pic=ImageField(manual_crop='1080x800', blank=True)
     name= models.CharField(max_length=55)
     caption = models.TextField(blank=True)
     profile= models.ForeignKey(User, blank=True,on_delete=models.CASCADE)
-    profile_details = models.ForeignKey(Profile)
+    
 
     def __str__(self):
         return str(self.name)
@@ -74,3 +77,20 @@ class Comment(models.Model):
 class Likes(models.Model):
     liker=models.ForeignKey(User)
     image =models.ForeignKey(Image)
+
+
+
+class Follow(models.Model):
+    followings = models.ForeignKey(User,related_name='followee')
+    followers = models.ForeignKey(User, related_name='follower')
+  
+    def __str__(self):
+        return '{} follows {}'.format(self. followers , self.followings)
+
+
+# Add following field to User dynamically
+User.add_to_class('followings',
+                  models.ManyToManyField('self',
+                                         through=Follow,
+                                         related_name='followers',
+                                         symmetrical=False))
