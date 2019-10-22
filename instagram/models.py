@@ -78,8 +78,7 @@ class Likes(models.Model):
     liker=models.ForeignKey(User)
     image =models.ForeignKey(Image)
 
-    def total_likes(self):
-       self.likes.count()
+    
 
 
 class Follow(models.Model):
