@@ -6,19 +6,19 @@
 <div class="container">
     <div class="row">
             {% for image in all_images %}
-        <div class="col-md-10">
-            
-            <div class="card"><br><br><br><br>
-                   <a> <img src="{{image.profile_details.profile_pic.url}}" class="img-responsive img-circle" style="width:10%; height:auto" alt=""/>
-                    </a>{{image.profile.username}}
-                   
-                       
-            
+              {%for profile in profile %}
+              <div class="col-md-4"></div>
+        <div class="col-md-6">
+            <div class="card"><br><br><br>
                 
-   
+                   <a> <img src="{{profile.profile_pic.url}}" class="img-responsive img-circle" style="width:10%; height:auto" alt=""/>
+                    
+                
+                </a>{{image.profile.username}}
+                   
 
 
-<hr>
+                                                      <hr>
                 <div class="card-img-top">
                     <img style="height:450px;width:348px;" src="{{image.pic.url}}"
                     alt="" class="card-img-top" ></div>
@@ -58,17 +58,13 @@
 
                                 </div>
 
-            {% empty %}
-            <h2>No images. Follow people to see their images</h2>
-            <p><a href= "{% url 'upload_image' %}">Add Image</a></p>
+            
 
           
         </div>
+        <div class="col-md-2"></div>
     </div>
 </div>
-               
+{%endfor%}             
 {% endfor %}
-
-</div>
-  </div>
 {% endblock %}
