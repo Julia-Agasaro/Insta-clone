@@ -2,12 +2,12 @@
 {% block content%}
 
 <div class="container">
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
+	
+	<div class="col-md-8"><br><br><br>
 		<div class="panel panel-default">
 		  <div class="panel-heading"><h3>Search results for the search term: <strong>{{message}}</strong></h3></div>
-		  {%if profiles%}
-		  	{% for profile in profiles %}
+		  {%if users%}
+		  	{% for profile in users %}
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-2">
