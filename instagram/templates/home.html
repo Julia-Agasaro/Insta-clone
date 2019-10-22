@@ -5,65 +5,60 @@
 {% block content %}
 <div class="container">
     <div class="row">
-            {% for image in all_images %}
-              {%for profile in profile %}
-              <div class="col-md-4"></div>
-        <div class="col-md-6">
-            <div class="card"><br><br><br>
-                
-                   <a> <img src="{{profile.profile_pic.url}}" class="img-responsive img-circle" style="width:10%; height:auto" alt=""/>
-                    
-                
-                </a>{{image.profile.username}}
-                   
+        {% for image in all_images %}
+            {%for profile in profile %}
+        <div class="col-md-4"></div>
+            <div class="col-md-6">
+                <div class="card"><br><br><br>
+
+                    <a> <img src="{{profile.profile_pic.url}}" class="img-responsive img-circle" style="width:10%; height:auto" alt=""/>
+                    </a>{{image.profile.username}}
+
+                                                    <hr>
+                        <div class="card-img-top">
+                            <img style="height:450px;width:348px;" src="{{image.pic.url}}"alt="" class="card-img-top" ></div>
 
 
-                                                      <hr>
-                <div class="card-img-top">
-                    <img style="height:450px;width:348px;" src="{{image.pic.url}}"
-                    alt="" class="card-img-top" ></div>
-                
+                            <ul class="list-inline">
+                            <li class="list-inline-item">
+                            <a href=" {% url 'like' image_id=image.id %}">
+                            <i class="fa fa-heart-o fa-3x" style="color: black" aria-hidden="true"></i></a>
 
-                 <ul class="list-inline">
-                 <li class="list-inline-item">
-                        <a href=" {% url 'like' image_id=image.id %}">
-                         <i class="fa fa-heart-o fa-3x" style="color: black" aria-hidden="true"></i></a>
-            
-                         <a href=" {% url 'comment' image_id=image.id %}">
-                          <i class="fa fa-comment-o fa-3x" aria-hidden="true" style="color:black;"></i></a>
+                            <a href=" {% url 'comment' image_id=image.id %}">
+                            <i class="fa fa-comment-o fa-3x" aria-hidden="true" style="color:black;"></i></a>
                             <hr>
-                           </li>
+                            </li>
                             </ul>
                             <li class="list-inline-item">
-                                <h5><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
-        
+                            <h5><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
+
                             </li>
-                        </ul>
-                        <br>
-                    <p>{{image.likes.count}} {{likes|length}} likes </p>
-                    <p class=""> {{image.comment.count}} comments </p>
-                    
-
-                <div class="card-body ">
-                    {% for comment in comments %}
-                    {% if comment.image_id == image.id%}
-                    <h5><strong>{{comment.comment_owner}}</strong> {{comment.comment}}</h5>
-                    <hr>
-
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                </div>
+                            </ul>
+                            <br>
+                            <p>{{image.likes.count}} {{likes|length}} likes </p>
+                            <p class=""> {{image.comment.count}} comments </p>
 
 
-                                </div>
+                        <div class="card-body ">
+                                {% for comment in comments %}
+                                {% if comment.image_id == image.id%}
+                                <h5><strong>{{comment.comment_owner}}</strong> {{comment.comment}}</h5>
+                                <hr>
 
-            
+                                {% endif %}
+                                {% endfor %}
+                        </div>
+                 </div>
 
-          
-        </div>
-        <div class="col-md-2"></div>
-    </div>
+
+</div>
+
+
+
+
+</div>
+<div class="col-md-2"></div>
+</div>
 </div>
 {%endfor%}             
 {% endfor %}
