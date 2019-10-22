@@ -6,23 +6,28 @@
 
 
 <div class="container-fluid" style="margin-top:20px;">
+    
         <div class="row">
           <div class="col-sm-2">
           </div>
           <div class="col-sm-8" style=" padding:30px; border-bottom: 1px solid #ddd">
 
 		      <div class="row" style="padding-bottom:20px">
-
+            {% for profile in profile%}
 			<div class="col-md-4">
-				<img src="{{user.profile.photo.url}}" alt="" style="height:200px;width:200px; border-radius:50%;" >
-              <p style="font-weight:bold; font-size:35px">{{user.profile.bio}}</p>
+				<img src="{{profile.profile_pic.url}}" alt="" style="height:200px;width:200px; border-radius:50%;" >
+              
+            </div>
+            <p style="font-weight:bold; font-size:35px">{{user.profile.bio}}</p>
+              <h2><strong>{{profile.user}}</strong></h2>
+			  <h4><strong>{{images|length}}</strong> Post{{images|pluralize}} <strong>{{followers}}</strong> Follower{{followers|pluralize}} <strong>{{user|length}}</strong> Following</h4>
 
               <div class="">
                 <a href="{%url 'edit'%}"  class = " btn btn-default btn-block" style="display:inline-block; width:200px; font-size:20px;">Edit Profile</a>
                 <i class="fa fa-cog" aria-hidden="true" style="font-size:30px; margin-left:10px"></i>
                 
               </div>
-               </div>
+              
                 </div>
                  </div>
                  </div>
@@ -58,6 +63,7 @@
         </div>
         
         {% endfor %}
+        {%endfor%} 
     </div>
 </div>
 
