@@ -86,7 +86,7 @@ def like(request, image_id):
     image=Image.objects.get(id=image_id)
     new_like,created= Likes.objects.get_or_create(liker=current_user, image=image)
     new_like.save()
-
+    print(new_like)
     return redirect('home')
 
 def comment(request,image_id):
@@ -111,7 +111,7 @@ def comment(request,image_id):
     else:
         form = CommentForm()
 
-    return render(request, 'comment.html', locals())
+    return render(request, 'comment.html', {'comments':comments})
 
 
 @login_required(login_url='/accounts/login/')
