@@ -23,6 +23,9 @@ python3.6 manage.py runserver
 Python3.6 - Python is a programming language that lets you work quickly and integrate systems more effectively Django - Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design postgresql - PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. Versioning version 1.0.0
 Versioning
 We use SemVer for versioning. For the versions available, see the tags on this repository.
+# Known Bugs
+
+After Deployments my likes and comments were not  working for reasons that i failed to find
 
 # Authors
 ## Julia Agasaro
